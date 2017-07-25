@@ -10,6 +10,13 @@ function getMovieData(searchString){
     })
 }
 
+function getPosterData(searchP){
+    var searchPoster = OMDb + "s=" + searchP;
+    $.get(searchPoster, function (data) {
+        console.log(data);
+        return data;
+    })
+}
 
 
 
