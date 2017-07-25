@@ -1,45 +1,32 @@
 var OMDb = "http://www.omdbapi.com/?apikey=1ca32dee&"
-var Poster = "http://img.omdbapi.com/?apikey=1ca32dee&"
 var BUTN_SEL = '[data-movie-selector]'
 
 function getMovieData(searchString){
     var searchURL = OMDb + "s=" + searchString;
-    $.get(searchURL, function (data) {
-        console.log(data);
-        return data;
-    })
+    return $.get(searchURL);
 }
+//Always return ajax requests promise.
 
-function getPosterData(searchP){
-    var searchPoster = OMDb + "s=" + searchP;
-    $.get(searchPoster, function (data) {
-        console.log(data);
-        return data;
-    })
+function makeMovieElement(data){
+    var movies = data["Search"];
+    for (var i = 0; i < movies.length; i++){
+        var para = $("<p></p>");
+        var intermed = movies[i]["Title"];
+        para.text(movies[i]["Title"]);
+        $("footer").append(para);
+    }   
 }
-
-function makeMovieElement(y){
-    var disOne = $("<p></p>").text(y);
-    $("footer").append(y);
-}
-
 
 
 //This would essentially serve as my main function.
-//This is returning information, but I think it's poster information.
 $(BUTN_SEL).on("dblclick", function(event){ 
     event.preventDefault();
-    getMovieData($("#movie-search").val());
-    getPosterData($("#movie-search").val());
-    makeMovieElement($("#movie-search").val());
+    getMovieData($("#movie-search").val())
+        .then(makeMovieElement)
 });
 
-
-
 //3. Set up makeMovieElement function.
-// Build an app that presents the user with a search form and queries OMDb for movie 
-// information. For each result, use promises to run a function that draws the movie 
-// information to the DOM.
+// Draw the movie information to the DOM.
 
 //4. Set up makePosterElement function.
 // Build an app that presents the user with a search form and queries for poster 
@@ -65,6 +52,10 @@ $(BUTN_SEL).on("dblclick", function(event){
 
 //9. Go back through and set everything up with promises and handle errors with .catch.
 
-//Debug:
-//Pretty sure it's returning poster information and movie information as the same thing.
-//Not sure what's going on there.
+///////////////////////////////////Debug/////////////////////////////////////////////////
+//1. Pretty sure it's returning poster information and movie information as the same 
+//thing. Not sure what's going on there.
+
+//2. Whenever you click in the search bar it sends a request, since it's set to on click.
+//The information returns false, but I'm not sure if that's correct. Set to dblclick
+//for the time being to avoid multiple searches.
