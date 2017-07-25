@@ -18,16 +18,22 @@ function getPosterData(searchP){
     })
 }
 
+// function makeMovieElement(y){
+//     var disOne = $("<p></p>").text(y);
+//     $("header").append(y);
+// }
 
 
-//API keys for OMDB and Poster
-//key=1ca32dee
-//key=1ca32dee
+
+//This would essentially serve as my main function.
+//This is returning information, but I think it's poster information.
+$(BUTN_SEL).on("dblclick", function(event){ 
+    event.preventDefault();
+    getMovieData($("#movie-search").val());
+    getPosterData($("#movie-search").val());
+});
 
 
-//2. Set up getPosterData function.
-//Then, for each of those, make another request to get the 
-// movie poster.
 
 //3. Set up makeMovieElement function.
 // Build an app that presents the user with a search form and queries OMDb for movie 
