@@ -1,12 +1,22 @@
+var OMDb = "http://www.omdbapi.com/?apikey=1ca32dee&"
+var Poster = "http://img.omdbapi.com/?apikey=1ca32dee&"
 var BUTN_SEL = '[data-movie-selector]'
 
+function getMovieData(searchString){
+    var searchURL = OMDb + "s=" + searchString;
+    $.get(searchURL, function (data) {
+        console.log(data);
+        return data;
+    })
+}
 
 
 
 
+//API keys for OMDB and Poster
+//key=1ca32dee
+//key=1ca32dee
 
-//1. Set up get getMovieData function.
-// Request movies.
 
 //2. Set up getPosterData function.
 //Then, for each of those, make another request to get the 
