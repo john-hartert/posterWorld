@@ -18,10 +18,10 @@ function getPosterData(searchP){
     })
 }
 
-// function makeMovieElement(y){
-//     var disOne = $("<p></p>").text(y);
-//     $("header").append(y);
-// }
+function makeMovieElement(y){
+    var disOne = $("<p></p>").text(y);
+    $("footer").append(y);
+}
 
 
 
@@ -31,6 +31,7 @@ $(BUTN_SEL).on("dblclick", function(event){
     event.preventDefault();
     getMovieData($("#movie-search").val());
     getPosterData($("#movie-search").val());
+    makeMovieElement($("#movie-search").val());
 });
 
 
@@ -63,3 +64,7 @@ $(BUTN_SEL).on("dblclick", function(event){
 //everything.
 
 //9. Go back through and set everything up with promises and handle errors with .catch.
+
+//Debug:
+//Pretty sure it's returning poster information and movie information as the same thing.
+//Not sure what's going on there.
